@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Checkout</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
+<section id="checkout-container">
+    <div id="checkout-left">
+        <h2>Shipping Information</h2>
+        <label for="full-name">Full Name</label>
+        <input type="text" id="full-name" placeholder="John Doe" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="example@example.com" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="+1234567890" required pattern="^\+?\d{10,15}$" title="Enter a valid phone number">
+
+        <label for="address">Address</label>
+        <textarea id="address" placeholder="123 Main Street, City, Country" required></textarea>
+
+        <h2>Payment Method</h2>
+        <label><input type="radio" name="payment" value="credit-card" checked> Credit/Debit Card</label>
+        <label><input type="radio" name="payment" value="paypal"> PayPal</label>
+        <label><input type="radio" name="payment" value="cod"> Cash on Delivery</label>
+    </div>
+
+    <div id="checkout-right">
+        <h2>Order Summary</h2>
+        <div id="order-summary"></div>
+        <p id="checkout-total">Total: $0.00</p>
+        <button id="place-order-btn">Place Order</button>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        let cart = JSON.parse(localStorage.getItem("checkoutCart")) || [];
+        const orderSummaryContainer = document.getElementById("order-summary");
+        const checkoutTotalElement = document.getElementById("checkout-total");
+        const placeOrderBtn = document.getElementById("place-order-btn");
+    
+        let total = 0;
+        orderSummaryContainer.innerHTML = "";
+    
+        cart.forEach(item => {
+            const itemDiv = document.createElement("div");
+            itemDiv.classList.add("order-item");
+            itemDiv.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="order-img">
+                <div class="item-details">
+                    <p><strong>${item.name}</strong></p>
+                    <p>Qty: ${item.quantity} | Price: $${(item.price * item.quantity).toFixed(2)}</p>
+                </div>
+            `;
+            orderSummaryContainer.appendChild(itemDiv);
+            total += item.price * item.quantity;
+        });
+    
+        checkoutTotalElement.textContent = `Total: $${total.toFixed(2)}`;
+    
+        placeOrderBtn.addEventListener("click", () => {
+            const fullName = document.getElementById("full-name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+    
+            if (!fullName || !email || !phone || !address) {
+                alert("Please fill out all required fields correctly.");
+                return;
+            }
+    
+            // Create order object
+            const order = {
+                fullName,
+                email,
+                phone,
+                address,
+                paymentMethod,
+                items: cart,
+                total: total.toFixed(2),
+                orderDate: new Date().toLocaleString()
+            };
+    
+            // Get existing orders from localStorage
+            let orders = JSON.parse(localStorage.getItem("orders")) || [];
+            orders.push(order);
+            localStorage.setItem("orders", JSON.stringify(orders));
+    
+            alert(`Thank you, ${fullName}! Your order has been placed successfully.`);
+            localStorage.removeItem("checkoutCart");
+            localStorage.removeItem("cart");
+            window.location.href = "index.html";
+        });
+    });
+    </script>
+    
+    
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #333;
+        color: white;
+        padding: 15px;
+        text-align: center;
+    }
+    nav a {
+        color: white;
+        margin: 0 10px;
+        text-decoration: none;
+    }
+    #checkout-container {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    #checkout-left, #checkout-right {
+        width: 45%;
+    }
+    input, textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .order-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .order-img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+    #place-order-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    #place-order-btn:hover {
+        background-color: #218838;
+    }
+</style>
+
+</body>
+</html>

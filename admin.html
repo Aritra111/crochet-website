@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<header>
+    <h1>Admin Panel - Orders</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="checkout.html">Checkout</a>
+    </nav>
+</header>
+
+<section id="admin-container">
+    <h2>Orders List</h2>
+    <div id="orders-list"></div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const ordersList = document.getElementById("orders-list");
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    if (orders.length === 0) {
+        ordersList.innerHTML = "<p>No orders yet.</p>";
+        return;
+    }
+
+    orders.forEach((order, index) => {
+        const orderDiv = document.createElement("div");
+        orderDiv.classList.add("order-item");
+        orderDiv.innerHTML = `
+            <h3>Order #${index + 1}</h3>
+            <p><strong>Name:</strong> ${order.fullName}</p>
+            <p><strong>Email:</strong> ${order.email}</p>
+            <p><strong>Phone:</strong> ${order.phone}</p>
+            <p><strong>Address:</strong> ${order.address}</p>
+            <p><strong>Payment Method:</strong> ${order.paymentMethod}</p>
+            <p><strong>Total:</strong> $${order.total}</p>
+            <p><strong>Date:</strong> ${order.orderDate}</p>
+            <h4>Items:</h4>
+            <ul>
+                ${order.items.map(item => `<li>${item.name} (Qty: ${item.quantity}) - $${item.price * item.quantity}</li>`).join('')}
+            </ul>
+            <hr>
+        `;
+        ordersList.appendChild(orderDiv);
+    });
+});
+</script>
+
+
+
+</body>
+</html>

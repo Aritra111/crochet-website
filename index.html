@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crochet Creations</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>🧶 Crochet by [Your Brand Name]</h1>
+        <nav>
+            
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About Us</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart.html" id="cart-icon">🛒 Cart (<span id="cart-count">0</span>)</a>
+
+            <li id="auth-section">
+                <a href="login.html" id="login-btn">Login</a> |
+                <a href="signup.html" id="signup-btn">Signup</a>
+                <span id="user-info" style="display: none;"></span>
+                <button id="logout-btn" style="display: none;">Logout</button>
+            </li>
+            
+            
+           
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Handmade Crochet with Love ❤️</h2>
+        <p>Unique, eco-friendly crochet products crafted just for you.</p>
+        <button onclick="scrollToSection('products')">Shop Now</button>
+    </section>
+
+    <!-- Product Gallery -->
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="product-grid">
+            <div class="product-card" data-name="Crochet Bag" data-price="40">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEkksFjQCSGBk_151moMpOa21NvTb1hipy5w&s" alt="Crochet Bag">
+                <h3>Crochet Bag</h3>
+                <p>$40.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card" data-name="Crochet Top" data-price="55">
+                <img src="https://bluestarcrochet.com/wp-content/uploads/2020/04/Optimized-IMG_1588.jpg" alt="Crochet Top">
+                <h3>Crochet Top</h3>
+                <p>$55.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card" data-name="Crochet Hat" data-price="30">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR5rlvyMJnf550GIIJqQ8FdguZ70yHcDfbQw&s" alt="Crochet Hat">
+                <h3>Crochet Hat</h3>
+                <p>$30.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card" data-name="Crochet Blanket" data-price="80">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCylIb3YRs7Fl7GDnZ0BMGIYfZs1TgJnlzTg&s" alt="Crochet Blanket">
+                <h3>Crochet Blanket</h3>
+                <p>$80.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We create sustainable, handmade crochet items with eco-friendly materials. Each piece tells a story of love and craftsmanship.</p>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial active">
+                <p>"Absolutely love my crochet bag! Beautifully made and eco-friendly." - Sarah ⭐⭐⭐⭐⭐</p>
+            </div>
+            <div class="testimonial">
+                <p>"The quality is amazing. Soft, cozy, and stylish!" - John ⭐⭐⭐⭐⭐</p>
+            </div>
+            <div class="testimonial">
+                <p>"Unique designs that you can't find anywhere else!" - Emily ⭐⭐⭐⭐⭐</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h3>What materials do you use?</h3>
+            <p class="answer">We use 100% organic cotton and eco-friendly yarns.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Do you offer custom designs?</h3>
+            <p class="answer">Yes! We love creating custom pieces tailored to your needs.</p>
+        </div>
+        <div class="faq-item">
+            <h3>How long does shipping take?</h3>
+            <p class="answer">Standard shipping takes 5-7 business days.</p>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section id="newsletter">
+        <h2>Subscribe to Our Newsletter</h2>
+        <form id="newsletter-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 [Your Brand Name]. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const user = localStorage.getItem("user");
+            const loginBtn = document.getElementById("login-btn");
+            const signupBtn = document.getElementById("signup-btn");
+            const userInfo = document.getElementById("user-info");
+            const logoutBtn = document.getElementById("logout-btn");
+    
+            if (user) {
+                // If user is logged in
+                loginBtn.style.display = "none";
+                signupBtn.style.display = "none";
+                userInfo.textContent = `Welcome, ${user}`;
+                userInfo.style.display = "inline";
+                logoutBtn.style.display = "inline";
+            } else {
+                // If no user is logged in
+                loginBtn.style.display = "inline";
+                signupBtn.style.display = "inline";
+                userInfo.style.display = "none";
+                logoutBtn.style.display = "none";
+            }
+    
+            // Logout functionality
+            logoutBtn.addEventListener("click", function () {
+                localStorage.removeItem("user");
+                alert("You have logged out.");
+                window.location.reload(); // Refresh the page
+            });
+        });
+    </script>
+    
+</body>
+</html>

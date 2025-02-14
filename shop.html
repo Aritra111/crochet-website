@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Cozy Crochet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Cozy Crochet</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About Us</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>🧶 Our Handmade Collection</h2>
+    <p>Discover beautiful, handcrafted crochet items made with love.</p>
+</section>
+
+<section id="shop">
+    <div class="filters">
+        <button class="filter-btn" data-category="all">All</button>
+        <button class="filter-btn" data-category="hats">Hats</button>
+        <button class="filter-btn" data-category="scarves">Scarves</button>
+        <button class="filter-btn" data-category="toys">Toys</button>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+        <!-- Product cards will be added here dynamically -->
+        <div class="product-card" data-category="hats">
+            <img src="images/crochet-hat.jpg" alt="Cozy Crochet Hat">
+            <h3>Cozy Crochet Hat</h3>
+            <p>$25.00</p>
+            <a href="product.html" class="add-to-cart">View Details</a>
+        </div>
+
+        <div class="product-card" data-category="scarves">
+            <img src="images/crochet-scarf.jpg" alt="Soft Crochet Scarf">
+            <h3>Soft Crochet Scarf</h3>
+            <p>$30.00</p>
+            <a href="product.html" class="add-to-cart">View Details</a>
+        </div>
+
+        <div class="product-card" data-category="toys">
+            <img src="images/crochet-toy.jpg" alt="Cute Crochet Toy">
+            <h3>Cute Crochet Toy</h3>
+            <p>$20.00</p>
+            <a href="product.html" class="add-to-cart">View Details</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Cozy Crochet. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
