@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Admin Login</h2>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="error-message" class="error"></p>
+    </div>
+
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Dummy credentials (replace with backend validation for real security)
+            const adminUsername = "admin";
+            const adminPassword = "password123";  // Use hashed passwords in real projects
+
+            if (username === adminUsername && password === adminPassword) {
+                localStorage.setItem("isAdmin", "true"); // Store login state
+                window.location.href = "admin.html"; // Redirect to admin panel
+            } else {
+                document.getElementById("error-message").textContent = "Invalid credentials!";
+            }
+        });
+
+
+    
+    </script>
+
+</body>
+</html>

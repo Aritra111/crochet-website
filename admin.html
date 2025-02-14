@@ -52,6 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
         ordersList.appendChild(orderDiv);
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+        // Check if admin is logged in
+        if (localStorage.getItem("isAdmin") !== "true") {
+            alert("Access Denied! Please log in.");
+            window.location.href = "admin-login.html"; // Redirect to login page
+        }
+    });
+
 </script>
 
 

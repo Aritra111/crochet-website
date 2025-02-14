@@ -10,6 +10,11 @@
 <body>
     <!-- Header -->
     <header>
+
+        
+        <h1>Welcome, <span id="username">Guest</span>!</h1>
+        <button id="logout-btn" style="display: none;">Logout</button>
+    
         <h1>🧶 Crochet by [Your Brand Name]</h1>
         <nav>
             
@@ -20,12 +25,12 @@
             <a href="contact.html">Contact</a>
             <a href="cart.html" id="cart-icon">🛒 Cart (<span id="cart-count">0</span>)</a>
 
-            <li id="auth-section">
+            <!-- <li id="auth-section">
                 <a href="login.html" id="login-btn">Login</a> |
                 <a href="signup.html" id="signup-btn">Signup</a>
                 <span id="user-info" style="display: none;"></span>
                 <button id="logout-btn" style="display: none;">Logout</button>
-            </li>
+            </li> -->
             
             
            
@@ -150,7 +155,7 @@
                 // If user is logged in
                 loginBtn.style.display = "none";
                 signupBtn.style.display = "none";
-                // userInfo.textContent = `Welcome, ${username}`;
+                userInfo.textContent = `Welcome, ${user}`;
                 userInfo.style.display = "inline";
                 logoutBtn.style.display = "inline";
             } else {
